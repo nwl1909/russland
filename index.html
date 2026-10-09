@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b1424">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Поговори с воином — Битва на реке Сить, 1238">
+<meta property="og:description" content="Прокрутите зимний фильм о битве на Сити и поговорите с князем, дружинником, ополченцем и монгольским военачальником.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1424'/%3E%3Cpath d='M16 5l9 4v7c0 6-4 9-9 11-5-2-9-5-9-11V9z' fill='%23d3a444'/%3E%3C/svg%3E">
 <title>Поговори с воином — Битва на реке Сить, 1238</title>
 <meta name="description" content="Интерактивный фильм и разговор с участниками битвы на реке Сить 4 марта 1238 года.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,12 +92,12 @@ h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2rem,6vw,3.5re
   --rx:0deg;--ry:0deg;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .35s var(--ease),border-color .3s,box-shadow .3s;will-change:transform}
 .card:hover{border-color:var(--gold);box-shadow:0 26px 50px rgba(0,0,0,.5),0 0 40px rgba(211,164,68,.18)}
 .card[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 4px rgba(211,164,68,.25),0 20px 40px rgba(0,0,0,.4)}
-.pic{display:block;position:relative;aspect-ratio:5/6;border-radius:999px 999px 6px 6px;overflow:hidden;margin-bottom:14px;box-shadow:inset 0 0 0 3px var(--gold);background:#1d3449}
+.pic{display:block;position:relative;aspect-ratio:5/6;border-radius:999px 999px 6px 6px;overflow:hidden;margin-bottom:14px;background:#1d3449}
 .pic svg,.pic img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .pic svg{transform-origin:50% 85%;animation:breathe 6s ease-in-out infinite}
 @keyframes breathe{50%{transform:scale(1.035) translateY(-1%)}}
 .pic img{object-fit:cover;z-index:2}
-.pic::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 50%,rgba(5,10,18,.55)),var(--noise);background-blend-mode:normal,overlay;opacity:.9}
+.pic::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 3px var(--gold),inset 0 0 0 7px #101d2d,inset 0 0 0 8px rgba(211,164,68,.5);background:radial-gradient(ellipse at 50% 40%,transparent 50%,rgba(5,10,18,.55)),var(--noise);background-blend-mode:normal,overlay;opacity:.9}
 .pic::before{content:"";position:absolute;inset:-30% auto -30% -60%;width:40%;z-index:4;background:linear-gradient(100deg,transparent,rgba(255,240,200,.35),transparent);transform:skewX(-18deg);transition:left .9s var(--ease)}
 .card:hover .pic::before{left:130%}
 .card h3{font-family:var(--display);font-weight:400;font-size:1.3rem;line-height:1.1}
@@ -184,6 +189,7 @@ footer{background:var(--night);color:var(--muted);padding:30px 0 calc(30px + env
 </style>
 </head>
 <body>
+<noscript><p style="padding:40px;color:#eef2f5;font:20px Georgia,serif">Для этой страницы нужен включённый JavaScript.</p></noscript>
 <div id="bar"></div>
 
 <div id="film">
@@ -236,7 +242,7 @@ footer{background:var(--night);color:var(--muted);padding:30px 0 calc(30px + env
         <h3 id="sName"></h3>
         <p id="sRole"></p>
         <div class="dots" id="dots"></div><div class="cnt" id="cnt"></div>
-        <div class="mode">Реплики созданы с помощью ИИ по летописям</div>
+        <div class="mode">Реплики восстановлены по летописям</div>
       </div>
     </aside>
     <div class="box">
@@ -259,7 +265,7 @@ footer{background:var(--night);color:var(--muted);padding:30px 0 calc(30px + env
     <h2 class="sec rv">Проверьте себя</h2>
     <p class="sub rv" style="--i:1">Шесть вопросов о Сити. Ответы вы уже могли услышать от героев.</p>
     <div class="qb rv" id="qb" style="--i:2"></div>
-    <p class="note2 rv">Реплики героев созданы с помощью ИИ по летописям и исследованиям. О чувствах и словах участников источники почти ничего не сообщают, поэтому многое в диалогах реконструкция. Для учёбы сверяйтесь с Лаврентьевской и Новгородской первой летописями.</p>
+    <p class="note2 rv">Реплики героев — художественная реконструкция по летописям и исследованиям. О чувствах и словах участников источники почти ничего не сообщают, поэтому многое в диалогах — догадка. Для учёбы сверяйтесь с Лаврентьевской и Новгородской первой летописями.</p>
   </div>
 </section>
 
@@ -277,7 +283,6 @@ const CAST=[
 {id:"yuri",photo:"images/yuri.jpg",name:"Князь Юрий Всеволодович",short:"Юрий",role:"Великий князь владимирский, 1188–1238",real:1,
  intro:"Потерял столицу и собирает силы на Сити.",
  greet:"Я Юрий, сын Всеволода Большое Гнездо. Владимир пал, и семья моя там. Стою на Сити и жду братьев. Спрашивай, пока есть час.",
- sys:"Ты Юрий Всеволодович, великий князь владимирский, накануне и в день битвы на Сити. Ты горюешь о Владимире и семье, полон решимости и веры, но понимаешь, что враг силён.",
  qa:[
  ["Почему вы покинули Владимир?","Я ушёл собирать полки на севере: одним городом врага не остановить, а войско надо было поднять заново. В городе остались жена, сыновья и невестки. За них болит сердце.",[1,4],"Юрий оставил во Владимире сыновей Всеволода и Мстислава. Город пал 7 февраля 1238 года.",1],
  ["Вы жалеете о своём решении?","Каждую ночь. Остался бы, был бы рядом с семьёй, но войска не собрал бы. Выбирать пришлось между сердцем и долгом, и ни один выбор не лёгок.",[5],"",0],
@@ -293,7 +298,6 @@ const CAST=[
 {id:"yaropolk",photo:"images/yaropolk.jpg",name:"Ярополк, дружинник",short:"Ярополк",role:"Княжий дружинник из Владимира",real:0,
  intro:"Вымышленный воин личной дружины князя.",
  greet:"Ярополк я, княжий дружинник. Бился ещё в княжьих сварах, а такого врага не видал. Что хочешь знать?",
- sys:"Ты Ярополк, вымышленный дружинник великого князя Юрия из Владимира. Ты опытный, суровый, с чёрным юмором. О падении Владимира знаешь по рассказам беженцев.",
  qa:[
  ["Чем вы вооружены?","Копьё, меч, щит миндалевидный, шелом, а кольчуга у кого есть. Кольчуга от стрелы спасает вполсилы, а их стрелы летят густо и далеко.",[1],"Шелом и кольчуга стоили дорого. Обычно ими были вооружены дружинники, а ополченцы шли с копьём и топором.",1],
  ["Как вы бьётесь в строю?","Сходимся стеной, плечо к плечу, и рубимся вблизи. Они же любят кружить, стрелять и ждать, пока строй дрогнет. Тут вся трудность.",[4],"",0],
@@ -309,7 +313,6 @@ const CAST=[
 {id:"pervusha",photo:"images/pervusha.jpg",name:"Первуша, ополченец",short:"Первуша",role:"Кузнец из Ярославля, взял копьё",real:0,
  intro:"Вымышленный городской ополченец.",
  greet:"Первуша я, кузнец. Мне молот привычнее копья, но молоту здесь не место. Ну, спрашивай.",
- sys:"Ты Первуша, вымышленный ополченец, кузнец. Ты простой, честный, немного испуганный, думаешь о семье, ремесле и доме.",
  qa:[
  ["Зачем ты пошёл воевать?","Позвали князья, позвала совесть. Если враг возьмёт город, то и кузница моя ни к чему. Лучше выйти и встать, чем сидеть и ждать.",[1,4],"",1],
  ["Что тебе дали из оружия?","Копьё, топор да щит, который сам и ковал. Учился бою на дворе, а не на поле. Рука к молоту привыкла.",[],"Городское ополчение собирали из ремесленников и торговцев.",0],
@@ -325,7 +328,6 @@ const CAST=[
 {id:"burundai",photo:"images/burundai.jpg",name:"Бурундай",short:"Бурундай",role:"Монгольский военачальник",real:1,
  intro:"Командовал отрядом, разгромившим русский лагерь.",
  greet:"Я Бурундай, воин великого хана. Ты хочешь говорить с тем, кто пришёл на твою землю? Говори, но коротко.",
- sys:"Ты Бурундай, монгольский военачальник, командовавший отрядом на Сити. Ты говоришь спокойно, уверенно и жёстко, ценишь дисциплину и разведку. Не оправдывай насилие над мирными.",
  qa:[
  ["Как вы нашли русский лагерь?","Разведчики идут впереди войска на много дней. Мы знали, где ваш князь, ещё до того, как он понял, что мы близко. Кто знает врага, тот уже наполовину победил.",[1],"",1],
  ["Как вы окружили русских?","Лёгкие всадники идут по сторонам и сзади, а основной отряд бьёт в лоб. Мы не бросаем всех сразу: сначала гоним, потом сжимаем кольцо.",[],"Монголы часто использовали окружение и притворное бегство, чтобы разорвать строй противника.",0],
@@ -341,7 +343,6 @@ const CAST=[
 {id:"vasilko",photo:"images/vasilko.jpg",name:"Василько Константинович",short:"Василько",role:"Князь ростовский, 1209–1238",real:1,
  intro:"Спешил на помощь дяде, но не успел.",
  greet:"Я Василько, князь ростовский. Шёл к дяде на Сить, да опоздал. Тяжело мне это. О чём спросишь?",
- sys:"Ты Василько Константинович, молодой ростовский князь, племянник Юрия (сын его брата Константина). Ты мучаешься, что не успел к битве, ты благороден и тверд в вере. О своём будущем плене и гибели ты ещё не знаешь.",
  qa:[
  ["Почему вы не успели?","Я собирал людей, шли мы по зимним дорогам. Когда подошли к Сити, было поздно: весть о гибели дяди и разгроме догнала нас раньше, чем мы дошли.",[1],"",1],
  ["Что вы чувствуете?","Горько и стыдно, хоть вины на мне нет. Лучше бы я лежал там с дядей, чем жил с этой мыслью.",[2],"",0],
@@ -355,34 +356,46 @@ const CAST=[
  ["Что вы хотите передать потомкам?","Не забывайте. Помните тех, кто стоял на Сити, и тех, кто не успел. И держитесь вместе: порознь нас ломают, вместе мы сильнее.",[],"Позднее Русская церковь причислила Василька Константиновича к лику святых.",0]],
 }];
 
-/* ---------- портреты ---------- */
-const SK={yuri:["#f3cfa6","#c68a5c"],yaropolk:["#ebbd92","#b97d55"],pervusha:["#e6ac84","#b0704f"],burundai:["#dfae83","#a56d47"],vasilko:["#f6d8b6","#d0a077"]};
-const BG={yuri:["#3a1a22","#c26d3c"],yaropolk:["#1c2d44","#7897b5"],pervusha:["#2f2a22","#b3925c"],burundai:["#14343e","#58949d"],vasilko:["#1d3256","#86a8d6"]};
-const BR={yuri:"#5b4a3b",yaropolk:"#3f2d1e",pervusha:"#8a6638",burundai:"#16100c",vasilko:"#5c3f26"};
-const BODY={
- yuri:`<path d="M20 288Q22 214 120 204Q218 214 220 288Z" fill="#8f2a22"/><path d="M20 288Q22 214 120 204Q70 222 62 288Z" fill="#000" opacity=".16"/><path d="M62 212Q120 254 178 212L192 232Q120 280 48 232Z" fill="#efe8d9"/><path d="M96 234l24 30 24-30" stroke="#d3a444" stroke-width="5" fill="none"/><circle cx="120" cy="266" r="7" fill="#d3a444"/>`,
- yaropolk:`<path d="M14 288Q18 212 120 202Q222 212 226 288Z" fill="#7f8b98"/><path d="M14 288Q18 212 120 202Q222 212 226 288Z" fill="url(#mail)"/><path d="M0 288V232Q34 238 56 288Z" fill="#a1322a"/><path d="M0 288V232Q34 238 56 288Z" fill="none" stroke="#d3a444" stroke-width="3"/>`,
- pervusha:`<path d="M20 288Q22 214 120 204Q218 214 220 288Z" fill="#6b4a30"/><path d="M92 206l28 46 28-46Z" fill="#dccdae"/><path d="M104 214l16 22 16-22M110 232l10 14 10-14" stroke="#6b4a30" stroke-width="2.5" fill="none"/><g transform="rotate(16 204 200)"><rect x="199" y="140" width="10" height="130" rx="3" fill="#7a5a38"/><rect x="180" y="126" width="48" height="28" rx="4" fill="#59656f"/></g>`,
- burundai:`<path d="M18 288Q20 214 120 204Q220 214 222 288Z" fill="#1f4d5c"/><path d="M94 206l26 52 26-52Z" fill="#c9a24a"/><path d="M120 258v30" stroke="#a1322a" stroke-width="7"/><path d="M18 288Q20 214 120 204" fill="none" stroke="#c9a24a" stroke-width="4"/>`,
- vasilko:`<path d="M20 288Q22 214 120 204Q218 214 220 288Z" fill="#2f5d95"/><path d="M62 214Q120 252 178 214" stroke="#ece4cf" stroke-width="13" fill="none"/><circle cx="170" cy="238" r="10" fill="#d3a444"/><circle cx="170" cy="238" r="4.5" fill="#a1322a"/>`};
-const GEAR={
- yuri:`<path d="M80 128Q80 198 120 206Q160 198 160 128Q148 166 120 166Q92 166 80 128Z" fill="#6d5a49"/><path d="M96 172l4 22M112 178l2 24M128 178l-2 24M144 172l-4 22" stroke="#9a8774" stroke-width="2.5"/><path d="M98 150Q120 140 142 150Q120 160 98 150Z" fill="#6d5a49"/><path d="M76 94Q80 36 120 32Q160 36 164 94Q120 78 76 94Z" fill="#8f2a22"/><path d="M70 96Q120 74 170 96L168 114Q120 94 72 114Z" fill="#3b2a22"/><path d="M70 96Q120 74 170 96" stroke="#d3a444" stroke-width="3" fill="none"/><circle cx="120" cy="58" r="7" fill="#d3a444"/>`,
- yaropolk:`<path d="M82 130Q86 178 120 184Q154 178 158 130Q146 158 120 158Q94 158 82 130Z" fill="#4a3626"/><path d="M142 104l-12 32" stroke="#a65a4a" stroke-width="3"/><path d="M74 104Q72 38 120 16Q168 38 166 104Z" fill="#aab5c0"/><path d="M80 90Q82 44 120 24" fill="none" stroke="#fff" stroke-width="4" opacity=".4"/><path d="M70 100Q120 114 170 100L170 112Q120 126 70 112Z" fill="#6f7c89"/><rect x="116" y="86" width="9" height="48" rx="3" fill="#8996a3"/><circle cx="120" cy="24" r="5" fill="#d3a444"/><path d="M78 112Q72 160 90 196M162 112Q168 160 150 196" stroke="url(#mail)" stroke-width="16" fill="none"/>`,
- pervusha:`<path d="M84 132Q88 182 120 188Q152 182 156 132Q144 162 120 162Q96 162 84 132Z" fill="#b08a52"/><ellipse cx="142" cy="104" rx="9" ry="4" fill="#2b2118" opacity=".28"/><path d="M74 100Q76 46 120 44Q164 46 166 100Q120 88 74 100Z" fill="#5a4332"/><ellipse cx="120" cy="98" rx="48" ry="13" fill="#7a5c43"/><path d="M86 90l4 8M104 86l3 10M126 86l-2 10M146 90l-4 8" stroke="#4a3626" stroke-width="2.5"/>`,
- burundai:`<path d="M112 150Q96 152 88 180M128 150Q144 152 152 180" stroke="#16100c" stroke-width="3.6" fill="none" stroke-linecap="round"/><path d="M113 168Q120 192 127 168Z" fill="#16100c"/><path d="M78 108Q66 146 72 196M162 108Q174 146 168 196" stroke="#16100c" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M76 98Q78 44 120 30Q162 44 164 98Z" fill="#a1322a"/><path d="M66 96Q120 70 174 96L170 116Q120 94 70 116Z" fill="#241a14"/><path d="M80 100l3 10M98 96l2 12M120 94v12M142 96l-2 12M160 100l-3 10" stroke="#3e2f26" stroke-width="2.5"/><circle cx="120" cy="48" r="5" fill="#d3a444"/>`,
- vasilko:`<path d="M78 120Q62 60 120 52Q178 60 162 120Q154 86 120 82Q86 86 78 120Z" fill="#6a4a2d"/><path d="M78 118Q68 164 80 196M162 118Q172 164 160 196" stroke="#6a4a2d" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M104 148Q120 142 136 148" stroke="#8a6a46" stroke-width="3" fill="none" opacity=".6"/><path d="M80 92Q120 74 160 92" stroke="#d3a444" stroke-width="7" fill="none"/><circle cx="120" cy="82" r="5.5" fill="#a1322a"/><circle cx="98" cy="86" r="3.5" fill="#2f7a5a"/><circle cx="142" cy="86" r="3.5" fill="#2f5d95"/>`};
+/* ---------- портреты (рисованные, в духе иконописной миниатюры) ---------- */
+const FACE="M78 112C78 80 98 66 120 66C142 66 162 80 162 112C162 146 146 172 120 175C94 172 78 146 78 112Z";
+const GOLD="#d3a444",RED="#a1322a";
+const P={
+yuri:{bg:["#2a1218","#b5602f"],sk:["#f3cfa8","#bf8456"],br:"#4a3a2e",age:1,m:161,
+ body:`<path d="M16 288Q18 204 120 196Q222 204 224 288Z" fill="#1f3f6e"/><path d="M52 288Q56 218 120 208Q184 218 188 288Z" fill="#8f2a22"/><path d="M52 288Q56 218 120 208Q100 240 96 288Z" fill="#000" opacity=".16"/><circle cx="192" cy="232" r="10" fill="${GOLD}"/><circle cx="192" cy="232" r="4.5" fill="${RED}"/>`,
+ hair:`<path d="M76 98Q66 132 76 160M164 98Q174 132 164 160" stroke="#8a8078" stroke-width="11" fill="none" stroke-linecap="round"/><path d="M80 120C78 160 96 192 120 194C144 192 162 160 160 120C154 148 142 156 120 156C98 156 86 148 80 120Z" fill="#6f655b"/><path d="M96 170Q120 188 144 170" stroke="#9c9288" stroke-width="3" fill="none" opacity=".7"/><path d="M99 150Q120 140 141 150Q131 159 120 154Q109 159 99 150Z" fill="#5d544b"/>`,
+ hat:`<path d="M72 92C68 48 96 28 120 28C144 28 172 48 168 92C148 82 92 82 72 92Z" fill="#8f2a22"/><path d="M96 40Q110 34 124 36" stroke="#c9574b" stroke-width="4" fill="none" opacity=".5" stroke-linecap="round"/><path d="M64 94C62 78 90 74 120 74C150 74 178 78 176 94C174 108 152 96 120 96C88 96 66 108 64 94Z" fill="#2e211b"/><path d="M76 88Q120 78 164 88" stroke="${GOLD}" stroke-width="3" fill="none"/><circle cx="120" cy="27" r="5" fill="${GOLD}"/>`,
+ front:`<path d="M88 206Q120 236 152 206L160 218Q120 254 80 218Z" fill="${GOLD}"/><path d="M92 212Q120 238 148 212" stroke="#7a1d18" stroke-width="2.5" fill="none" stroke-dasharray="3 4"/>`},
+yaropolk:{bg:["#16263c","#7897b5"],sk:["#ecc096","#b97d55"],br:"#3f2d1e",m:160,
+ body:`<path id="coif" d="M62 130C56 172 68 202 98 214L142 214C172 202 184 172 178 130L164 96L76 96Z" fill="url(#st)"/><path d="M62 130C56 172 68 202 98 214L142 214C172 202 184 172 178 130L164 96L76 96Z" fill="url(#mail)"/><path d="M12 288Q16 208 120 198Q224 208 228 288Z" fill="url(#st)"/><path d="M12 288Q16 208 120 198Q224 208 228 288Z" fill="url(#mail)"/><path d="M0 288V228Q40 230 62 258Q70 274 62 288Z" fill="${RED}"/><path d="M0 288V228Q40 230 62 258Q70 274 62 288Z" fill="none" stroke="${GOLD}" stroke-width="3"/><circle cx="20" cy="262" r="8" fill="#c9cdd2"/>`,
+ hair:`<path d="M92 148Q120 138 148 148Q150 172 120 180Q90 172 92 148Z" fill="#4a3626"/><path d="M100 150Q120 142 140 150Q130 158 120 154Q110 158 100 150Z" fill="#3a2a1e"/><path d="M90 128l9 15" stroke="#b86a5a" stroke-width="2.4" stroke-linecap="round"/>`,
+ hat:`<path d="M76 94C74 46 96 22 120 16C144 22 166 46 164 94C140 86 100 86 76 94Z" fill="url(#st)"/><path d="M92 78Q94 42 118 24" fill="none" stroke="#fff" stroke-width="4" opacity=".4" stroke-linecap="round"/><path d="M72 88Q120 97 168 88V96Q120 105 72 96Z" fill="#6f7c89"/><rect x="116" y="94" width="9" height="46" rx="3" fill="#8996a3"/><path d="M120 16V8" stroke="#8996a3" stroke-width="3"/><circle cx="120" cy="21" r="4" fill="${GOLD}"/>`},
+pervusha:{bg:["#241c14","#c07a34"],sk:["#e9b18a","#b0704f"],br:"#6a4a2c",m:158,
+ body:`<path d="M22 288Q24 210 120 202Q216 210 218 288Z" fill="#d8c9a6"/><path d="M22 288Q24 210 120 202Q96 240 92 288Z" fill="#000" opacity=".12"/><path d="M66 288L80 226Q120 244 160 226L174 288Z" fill="#6b4a30"/><path d="M84 214L98 236M156 214L142 236" stroke="#4a3220" stroke-width="5" stroke-linecap="round"/><g transform="rotate(14 206 200)"><rect x="201" y="136" width="9" height="140" rx="3" fill="#7a5a38"/><path d="M205.5 112L214 138H197Z" fill="#9aa7b2"/></g>`,
+ hair:`<path d="M76 100Q70 130 78 152M164 100Q170 130 162 152" stroke="#6a4a2c" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M76 108C68 58 100 46 120 46C146 46 172 60 164 108C158 84 142 76 120 76C98 76 84 86 76 108Z" fill="#6a4a2c"/><path d="M82 128C82 164 98 182 120 182C142 182 158 164 158 128C152 150 140 160 120 160C100 160 88 150 82 128Z" fill="#8a6638" opacity=".9"/><path d="M100 150Q120 142 140 150Q130 156 120 153Q110 156 100 150Z" fill="#7a5a30"/><ellipse cx="146" cy="136" rx="9" ry="5" fill="#2b2118" opacity=".3"/>`,
+ hat:`<path d="M75 88Q120 70 165 88L164 99Q120 82 76 99Z" fill="#dccdae"/><path d="M75 93Q120 76 165 93" stroke="${RED}" stroke-width="2" fill="none"/>`},
+burundai:{bg:["#10303a","#58949d"],sk:["#e0b088","#a56d47"],br:"#16100c",m:158,
+ body:`<path d="M16 288Q18 208 120 198Q222 208 224 288Z" fill="#1f4d5c"/><path d="M16 288Q18 208 120 198Q96 240 90 288Z" fill="#000" opacity=".18"/><path d="M34 288L100 212" stroke="#4a3220" stroke-width="9"/><g fill="#c9a24a" opacity=".85"><rect x="30" y="222" width="22" height="9" rx="3"/><rect x="188" y="222" width="22" height="9" rx="3"/></g>`,
+ hair:`<path d="M80 108Q62 150 72 202M160 108Q178 150 168 202" stroke="#16100c" stroke-width="9" fill="none" stroke-linecap="round"/><circle cx="72" cy="202" r="4" fill="${RED}"/><circle cx="168" cy="202" r="4" fill="${RED}"/><path d="M118 148Q104 146 94 152Q92 166 98 178M122 148Q136 146 146 152Q148 166 142 178" stroke="#16100c" stroke-width="3.6" fill="none" stroke-linecap="round"/><path d="M113 168Q120 192 127 168Z" fill="#16100c"/>`,
+ hat:`<path d="M74 92C72 50 98 28 120 24C142 28 168 50 166 92C140 84 100 84 74 92Z" fill="#8f2a22"/><path d="M62 96C60 80 90 76 120 76C150 76 180 80 178 96C176 110 152 98 120 98C88 98 64 110 62 96Z" fill="#1c1410"/><path d="M80 90l3 9M98 84l2 11M120 82v12M142 84l-2 11M160 90l-3 9" stroke="#3e2f26" stroke-width="2.4"/><circle cx="120" cy="24" r="5" fill="${GOLD}"/>`,
+ front:`<path d="M86 204L120 260L154 204L166 214L120 276L74 214Z" fill="#c9a24a"/><path d="M120 262V288" stroke="${RED}" stroke-width="8"/>`},
+vasilko:{bg:["#16294c","#86a8d6"],sk:["#f7dbbb","#d0a077"],br:"#6a4a2d",m:158,
+ body:`<path d="M20 288Q22 208 120 200Q218 208 220 288Z" fill="#2f5d95"/><path d="M20 288Q22 208 120 200Q98 240 94 288Z" fill="#000" opacity=".16"/><circle cx="184" cy="232" r="10" fill="${GOLD}"/><circle cx="184" cy="232" r="4.5" fill="${RED}"/>`,
+ hair:`<path d="M78 108Q66 142 82 170M162 108Q174 142 158 170" stroke="#7a5532" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M78 112C64 62 94 50 120 50C148 50 176 62 162 112C158 90 146 80 120 80C94 80 82 90 78 112Z" fill="#7a5532"/><path d="M88 146C92 168 104 178 120 178C136 178 148 168 152 146C146 158 134 162 120 162C106 162 94 158 88 146Z" fill="#8a6a46" opacity=".85"/><path d="M104 151Q120 145 136 151" stroke="#8a6a46" stroke-width="3" fill="none" opacity=".7"/>`,
+ hat:`<path d="M78 90Q120 70 162 90" stroke="${GOLD}" stroke-width="8" fill="none"/><circle cx="120" cy="81" r="5.5" fill="${RED}"/><circle cx="97" cy="85" r="3.5" fill="#2f7a5a"/><circle cx="143" cy="85" r="3.5" fill="#2f5d95"/>`,
+ front:`<path d="M70 210Q120 252 170 210L160 202Q120 236 80 202Z" fill="#ece4cf"/><path d="M98 232Q120 244 142 232" stroke="${GOLD}" stroke-width="2.5" fill="none"/><path d="M120 242v14M113 248h14" stroke="${GOLD}" stroke-width="3"/>`}};
 function portrait(id){
-  const b=BG[id],s=SK[id];
-  const eyes=id==="burundai"
-   ?`<path d="M92 120Q102 112 112 120M128 120Q138 112 148 120" stroke="#1a120c" stroke-width="4.2" fill="none" stroke-linecap="round"/><path d="M90 132Q102 138 112 132M128 132Q138 138 150 132" stroke="#000" stroke-width="2" fill="none" opacity=".18"/>`
-   :`<ellipse cx="102" cy="118" rx="6.5" ry="4.5" fill="#fff"/><ellipse cx="138" cy="118" rx="6.5" ry="4.5" fill="#fff"/><circle cx="102" cy="118" r="3.2" fill="#2b2118"/><circle cx="138" cy="118" r="3.2" fill="#2b2118"/><path d="M92 108Q102 102 112 107M128 107Q138 102 148 108" stroke="${BR[id]}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-  return `<svg viewBox="0 0 240 288" role="img" aria-label="Портрет, реконструкция"><defs><linearGradient id="b${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${b[0]}"/><stop offset="1" stop-color="${b[1]}"/></linearGradient><radialGradient id="s${id}" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="${s[0]}"/><stop offset="1" stop-color="${s[1]}"/></radialGradient><pattern id="mail" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="3" fill="none" stroke="#d3dce4" stroke-width="1.1" opacity=".75"/></pattern></defs>
-<rect width="240" height="288" fill="url(#b${id})"/><circle cx="120" cy="118" r="94" fill="#ffe7b0" opacity=".16"/><path d="M0 252Q70 224 130 246T240 238V288H0Z" fill="#fff" opacity=".2"/>${BODY[id]}
-<rect x="102" y="158" width="36" height="46" rx="12" fill="url(#s${id})"/><path d="M102 178Q120 194 138 178V192H102Z" fill="#000" opacity=".2"/>
-<ellipse cx="79" cy="124" rx="8" ry="13" fill="url(#s${id})"/><ellipse cx="161" cy="124" rx="8" ry="13" fill="url(#s${id})"/><ellipse cx="120" cy="120" rx="43" ry="53" fill="url(#s${id})"/>
-<ellipse cx="94" cy="142" rx="10" ry="6" fill="#d0705a" opacity=".22"/><ellipse cx="146" cy="142" rx="10" ry="6" fill="#d0705a" opacity=".22"/>
-<path d="M121 112Q112 134 118 141Q125 144 130 139" stroke="#8c5434" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>${eyes}
-<path d="M108 154Q120 160 132 154" stroke="#7a3f2c" stroke-width="3.2" fill="none" stroke-linecap="round"/>${GEAR[id]}</svg>`;
+  const c=P[id],b=c.bg,s=c.sk,bu=id==="burundai",ey=bu?101:100;
+  const eyes=bu
+   ?`<path d="M91 121Q102 114 113 121Q102 125 91 121ZM127 121Q138 114 149 121Q138 125 127 121Z" fill="#f1e6d6"/><circle cx="102" cy="120" r="2.6" fill="#1a120c"/><circle cx="138" cy="120" r="2.6" fill="#1a120c"/><path d="M90 120Q102 112 114 120M126 120Q138 112 150 120" stroke="#1a120c" stroke-width="2.4" fill="none" stroke-linecap="round"/>`
+   :`<path d="M92 119Q102 111 112 119Q102 125 92 119ZM128 119Q138 111 148 119Q138 125 128 119Z" fill="#f4ece0"/><circle cx="102" cy="119" r="3.6" fill="#3a2a1e"/><circle cx="138" cy="119" r="3.6" fill="#3a2a1e"/><circle cx="103.2" cy="117.8" r="1" fill="#fff"/><circle cx="139.2" cy="117.8" r="1" fill="#fff"/><path d="M91 118.5Q102 109.5 113 118.5M127 118.5Q138 109.5 149 118.5" stroke="#2a1a10" stroke-width="2.2" fill="none" stroke-linecap="round"/>`;
+  return `<svg viewBox="0 0 240 288" role="img" aria-label="Портрет, реконструкция"><defs><linearGradient id="b${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${b[0]}"/><stop offset="1" stop-color="${b[1]}"/></linearGradient><radialGradient id="g${id}"><stop offset="0" stop-color="#ffe7b0" stop-opacity=".38"/><stop offset="1" stop-color="#ffe7b0" stop-opacity="0"/></radialGradient><radialGradient id="s${id}" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="${s[0]}"/><stop offset="1" stop-color="${s[1]}"/></radialGradient><linearGradient id="f${id}" x1="0" x2="1" y1="0" y2="0"><stop offset=".45" stop-color="#3a1608" stop-opacity="0"/><stop offset="1" stop-color="#3a1608" stop-opacity=".36"/></linearGradient><linearGradient id="st" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3ccd5"/><stop offset="1" stop-color="#6f7c89"/></linearGradient><pattern id="mail" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="3" fill="none" stroke="#e4ebf1" stroke-width="1.1" opacity=".6"/></pattern></defs>
+<rect width="240" height="288" fill="url(#b${id})"/><circle cx="120" cy="112" r="96" fill="url(#g${id})"/><path d="M0 256Q70 232 130 250T240 242V288H0Z" fill="#fff" opacity=".14"/>${c.body}
+${id==="yaropolk"?"":`<path d="M102 158V206Q120 220 138 206V158Z" fill="url(#s${id})"/><path d="M102 176Q120 194 138 176V192Q120 206 102 192Z" fill="#000" opacity=".22"/>`}
+<ellipse cx="79" cy="124" rx="8" ry="13" fill="url(#s${id})"/><ellipse cx="161" cy="124" rx="8" ry="13" fill="url(#s${id})"/>
+<path d="${FACE}" fill="url(#s${id})"/><path d="${FACE}" fill="url(#f${id})"/>
+<ellipse cx="108" cy="92" rx="16" ry="9" fill="#fff" opacity=".12"/><ellipse cx="94" cy="142" rx="10" ry="6" fill="#d0705a" opacity=".2"/><ellipse cx="146" cy="142" rx="10" ry="6" fill="#d0705a" opacity=".2"/>
+<path d="M121 108Q113 132 117 141Q124 146 131 140" stroke="#8c5434" stroke-width="3" fill="none" opacity=".5" stroke-linecap="round"/><path d="M113 143Q120 148 127 143" stroke="#6b3a24" stroke-width="2" fill="none" opacity=".4" stroke-linecap="round"/>${eyes}
+<path d="M90 106Q102 ${ey} 114 105M126 105Q138 ${ey} 150 106" stroke="${c.br}" stroke-width="${bu?3.2:4.2}" fill="none" stroke-linecap="round"/>${c.age?`<path d="M104 142Q99 152 101 161M136 142Q141 152 139 161" stroke="#7a4a2c" stroke-width="1.6" fill="none" opacity=".28"/>`:""}${c.hair}<path d="M111 ${c.m}Q120 ${c.m+5} 129 ${c.m}" stroke="#5e281c" stroke-width="3" fill="none" stroke-linecap="round"/>${c.hat}${c.front||""}</svg>`;
 }
 const pic=c=>`<span class="pic">${portrait(c.id)}<img src="${c.photo}" alt="" loading="lazy" onerror="this.remove()"></span>`;
 
@@ -439,7 +452,7 @@ function rider(x,y,s,t,col){
 }
 function soldier(x,y,s,col,dir,shield){
   ctx.fillStyle=col;ctx.strokeStyle=col;
-  ctx.fillRect(x-2*s,y-12*s,4*s,9*s);ctx.beginPath();ctx.arc(x,y-14.6*s,2.4*s,0,7);ctx.fill();
+  ctx.fillRect(x-2*s,y-12*s,4*s,9*s);ctx.beginPath();ctx.arc(x,y-14.6*s,2.4*s,0,7);ctx.fill();ctx.beginPath();if(shield){ctx.moveTo(x-2.6*s,y-15.6*s);ctx.lineTo(x,y-21*s);ctx.lineTo(x+2.6*s,y-15.6*s);}else{ctx.ellipse(x,y-16.4*s,3.4*s,1.2*s,0,0,7);ctx.moveTo(x-1.6*s,y-16.8*s);ctx.lineTo(x,y-19.4*s);ctx.lineTo(x+1.6*s,y-16.8*s);}ctx.fill();
   ctx.fillRect(x-2*s,y-3*s,1.7*s,3*s);ctx.fillRect(x+.3*s,y-3*s,1.7*s,3*s);
   ctx.lineWidth=Math.max(.8,s*.7);ctx.beginPath();ctx.moveTo(x+dir*3*s,y-4*s);ctx.lineTo(x+dir*(3+13)*s,y-25*s);ctx.stroke();
   if(shield){ctx.fillStyle="#a1322a";ctx.beginPath();ctx.ellipse(x-dir*2.8*s,y-8*s,2*s,3.5*s,0,0,7);ctx.fill();}
