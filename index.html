@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Поговори с воином — Битва на реке Сить, 1238</title>
+<meta name="description" content="Интерактивный чат с участником битвы на реке Сить 4 марта 1238 года. Собеседник создан ИИ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=Ruslan+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --snow:#eaeff2; --ice:#c8d5de; --river:#456a84; --deep:#14212d; --deep2:#1c2d3c;
+  --ink:#16232f; --gold:#b98b2c; --gold2:#e0b95a; --blood:#8e2a22; --muted:#5d7080;
+  --display:"Ruslan Display","Palatino Linotype",Georgia,serif;
+  --body:"Alegreya",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-size:19px;line-height:1.55;color:var(--ink);background:var(--snow)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  background:linear-gradient(#cfdce5 0%,#e6edf1 55%,#f2f5f7 100%)}
+.hero .wrap{position:relative;z-index:2;padding-top:56px;padding-bottom:30vh}
+.date{font-size:1.1rem;color:var(--blood);font-weight:700;letter-spacing:.02em}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(3rem,10vw,7.6rem);line-height:.95;margin:.2em 0 .25em;color:var(--deep)}
+.lead{max-width:34ch;font-size:clamp(1.15rem,2.4vw,1.5rem);color:#2c4052}
+.btn{display:inline-block;margin-top:30px;background:var(--deep);color:var(--snow);border:0;padding:15px 30px;border-radius:2px;
+  font-size:1.1rem;font-weight:700;text-decoration:none;box-shadow:5px 5px 0 var(--gold);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--gold)}
+.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:42vh;min-height:230px;z-index:1}
+.flake{position:absolute;top:-10px;width:5px;height:5px;border-radius:50%;background:#fff;opacity:.85;z-index:1;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(40px,110vh)}}
+.host{animation:ride 24s linear infinite alternate}
+@keyframes ride{to{transform:translateX(-26px)}}
+@media (prefers-reduced-motion:reduce){.flake,.host{animation:none}html{scroll-behavior:auto}}
+
+/* SECTIONS */
+section{padding:84px 0}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin-bottom:.4em}
+.sub{max-width:60ch;color:var(--muted);margin-bottom:44px}
+
+/* CAST */
+.cast{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.card{position:relative;text-align:left;background:#f7f9fa;border:2px solid var(--ice);border-radius:120px 120px 4px 4px;
+  padding:34px 16px 20px;color:var(--ink);transition:border-color .2s,background .2s,transform .2s}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card[aria-pressed=true]{background:var(--deep);color:var(--snow);border-color:var(--gold)}
+.ini{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 16px;border-radius:50%;border:2px solid var(--gold);
+  font-family:var(--display);font-size:2.4rem;color:var(--blood);background:radial-gradient(#fbf3dc,#ecd9a2)}
+.card h3{font-family:var(--display);font-weight:400;font-size:1.35rem;line-height:1.1;text-align:center}
+.card .role{display:block;margin-top:8px;font-size:.92rem;text-align:center;color:var(--muted);line-height:1.3}
+.card[aria-pressed=true] .role{color:var(--ice)}
+.tag{display:block;margin:12px auto 0;width:max-content;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:20px;background:var(--ice);color:var(--deep)}
+.tag.fic{background:var(--gold2)}
+
+/* CHAT */
+#chat{background:var(--deep);color:var(--snow);position:relative}
+#chat::before{content:"";position:absolute;inset:0 0 auto 0;height:10px;background:repeating-linear-gradient(90deg,var(--gold) 0 18px,transparent 18px 30px)}
+.grid{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+.side{position:sticky;top:24px}
+.side .ini{width:104px;height:104px;font-size:3.4rem;margin:0 0 18px}
+.side h2{font-size:2rem;color:var(--snow)}
+.side p{color:var(--ice);font-size:1rem;margin-top:10px}
+.mode{margin-top:22px;font-size:.95rem;padding:12px 14px;border-left:4px solid var(--gold);background:var(--deep2)}
+.link{background:none;border:0;color:var(--gold2);text-decoration:underline;padding:0}
+.box{background:var(--deep2);border:1px solid #2f4558;border-radius:4px;display:flex;flex-direction:column;height:min(74vh,720px)}
+.log{flex:1;overflow-y:auto;padding:26px;display:flex;flex-direction:column;gap:20px}
+.msg{max-width:84%}
+.msg.you{align-self:flex-end;background:var(--river);padding:10px 16px;border-radius:14px 14px 2px 14px}
+.msg.bot{align-self:flex-start;padding-left:20px;border-left:3px solid var(--gold);font-size:1.12rem;line-height:1.6}
+.msg.bot .who{display:block;font-family:var(--display);color:var(--gold2);font-size:1rem;margin-bottom:2px}
+.msg.err{align-self:center;color:#f0b3ac;font-size:.95rem;text-align:center}
+.dots span{display:inline-block;width:7px;height:7px;margin-right:5px;background:var(--gold2);border-radius:50%;animation:b 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes b{50%{transform:translateY(-6px);opacity:.4}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 26px 14px}
+.chips button{background:transparent;color:var(--ice);border:1px solid #4a6378;padding:6px 14px;border-radius:20px;font-size:.95rem}
+.chips button:hover{border-color:var(--gold2);color:#fff}
+.form{display:flex;gap:10px;padding:16px 26px 22px;border-top:1px solid #2f4558}
+.form input{flex:1;min-width:0;font:inherit;padding:12px 14px;border-radius:2px;border:1px solid #4a6378;background:var(--deep);color:#fff}
+.form input::placeholder{color:#8ea3b3}
+.form button{background:var(--gold);color:var(--deep);border:0;padding:0 24px;font-weight:700;border-radius:2px}
+.form button:disabled{opacity:.5;cursor:wait}
+
+/* FACTS */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:3px solid var(--deep)}
+.fact{padding:22px 26px 10px 0}
+.fact b{font-family:var(--display);font-weight:400;font-size:1.7rem;color:var(--blood);display:block}
+.note{margin-top:46px;padding:18px 22px;background:#f7f9fa;border-left:4px solid var(--blood);max-width:70ch;font-size:1rem}
+footer{background:var(--deep);color:var(--ice);padding:34px 0;font-size:.95rem}
+
+/* DIALOG */
+dialog{margin:auto;border:0;border-radius:4px;padding:28px;max-width:480px;width:calc(100% - 32px);background:var(--snow);color:var(--ink)}
+dialog::backdrop{background:rgba(10,18,26,.7)}
+dialog h3{font-family:var(--display);font-weight:400;font-size:1.7rem;margin-bottom:6px}
+dialog label{display:block;margin-top:14px;font-weight:700;font-size:.95rem}
+dialog input,dialog select{width:100%;font:inherit;padding:9px 10px;margin-top:4px;border:1px solid var(--ice);border-radius:2px;background:#fff}
+dialog small{display:block;margin-top:14px;color:var(--muted);font-size:.88rem;line-height:1.4}
+.row{display:flex;gap:10px;margin-top:20px}
+.row .btn{margin:0;padding:11px 22px;box-shadow:none}
+.row .alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+
+@media(max-width:980px){.cast{grid-template-columns:repeat(2,1fr)}.cast .card:last-child{grid-column:1/-1}.grid{grid-template-columns:1fr}.side{position:static}.facts{grid-template-columns:1fr}}
+@media(max-width:520px){.cast{grid-template-columns:1fr}body{font-size:18px}.log{padding:16px}.chips,.form{padding-left:16px;padding-right:16px}.msg{max-width:94%}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="date">4 марта 1238 года · река Сить</p>
+    <h1>Поговори<br>с воином</h1>
+    <p class="lead">Зима, лес, река и татарское войско. Выберите участника битвы и задайте ему вопрос — он ответит от первого лица.</p>
+    <a class="btn" href="#who">Выбрать собеседника</a>
+  </div>
+  <svg class="land" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 150 Q240 90 480 140 T960 120 T1440 130 V360H0Z" fill="#dbe5eb"/>
+    <g fill="#8aa3b4"><path d="M60 150l22-70 22 70zM120 150l18-56 18 56zM1180 140l24-76 24 76zM1260 145l18-60 18 60zM1340 140l22-70 22 70z"/></g>
+    <path d="M0 215 C300 190 520 250 820 225 S1250 190 1440 215 V360H0Z" fill="#456a84"/>
+    <path d="M0 215 C300 190 520 250 820 225 S1250 190 1440 215" fill="none" stroke="#c8d5de" stroke-width="3"/>
+    <path d="M0 262 Q400 238 760 262 T1440 250 V360H0Z" fill="#f7fafb"/>
+    <g class="host" fill="#14212d">
+      <g stroke="#14212d" stroke-width="3"><path d="M250 250V150M290 252V138M330 250V152M370 253V142M410 250V156"/></g>
+      <path d="M250 150l-5 14h10zM290 138l-5 14h10zM330 152l-5 14h10zM370 142l-5 14h10zM410 156l-5 14h10z"/>
+      <path d="M235 262c0-26 14-38 25-38s25 12 25 38zM275 264c0-28 14-40 25-40s25 12 25 40zM315 262c0-26 14-38 25-38s25 12 25 38zM355 265c0-28 14-40 25-40s25 12 25 40zM395 262c0-26 14-38 25-38s25 12 25 38z"/>
+    </g>
+    <g fill="#8e2a22"><path d="M980 250V140l46 14-46 14z"/></g>
+    <path d="M980 252V136" stroke="#14212d" stroke-width="3"/>
+    <g fill="#14212d"><path d="M1060 270c0-22 12-32 22-32s22 10 22 32zM1110 272c0-24 12-34 22-34s22 10 22 34z"/></g>
+  </svg>
+</header>
+
+<section id="who">
+  <div class="wrap">
+    <h2>С кем вы хотите поговорить?</h2>
+    <p class="sub">Трое реально жили и участвовали в событиях. Двое — собирательные образы, придуманные для проекта: так мы показываем, как всё выглядело для обычных людей.</p>
+    <div class="cast" id="cast"></div>
+  </div>
+</section>
+
+<section id="chat">
+  <div class="wrap grid">
+    <aside class="side" aria-live="polite">
+      <div class="ini" id="sIni"></div>
+      <h2 id="sName"></h2>
+      <p id="sRole"></p>
+      <div class="mode" id="mode"></div>
+    </aside>
+    <div class="box">
+      <div class="log" id="log" role="log" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <form class="form" id="form">
+        <input id="q" autocomplete="off" placeholder="Спросите о битве, жизни, страхе…" aria-label="Ваш вопрос">
+        <button id="send">Спросить</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Что было на самом деле</h2>
+    <div class="facts">
+      <div class="fact"><b>Февраль 1238</b><p>Войска Батыя берут Владимир. Великий князь Юрий Всеволодович уходит на север собирать полки.</p></div>
+      <div class="fact"><b>4 марта</b><p>На реке Сить отряд Бурундая окружает русский лагерь. Битва заканчивается разгромом.</p></div>
+      <div class="fact"><b>Итог</b><p>Юрий погиб. Это одно из последних крупных сражений Северо-Восточной Руси в первый год нашествия.</p></div>
+    </div>
+    <p class="note"><strong>Важно.</strong> Реплики героев создаёт нейросеть. Она опирается на летописи и исследования, но может ошибаться или додумывать детали. Для учёбы сверяйтесь с источниками: Лаврентьевская летопись, Новгородская первая летопись, работы историков.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">Проект «Поговори с воином» · Битва на реке Сить, 1238 · Персонажи Ярополк и Первуша вымышлены.</div></footer>
+
+<dialog id="dlg">
+  <h3>Подключить ИИ</h3>
+  <p>Без ключа работает демо с готовыми ответами. С ключом воины отвечают на любой вопрос.</p>
+  <label>Провайдер
+    <select id="prov"><option value="anthropic">Anthropic (Claude)</option><option value="openai">OpenAI-совместимый API / свой прокси</option></select>
+  </label>
+  <label>Адрес API (для OpenAI-совместимого)<input id="base" placeholder="https://api.openai.com/v1"></label>
+  <label>Модель<input id="model" placeholder="claude-sonnet-5-5"></label>
+  <label>API-ключ<input id="key" type="password" placeholder="sk-..." autocomplete="off"></label>
+  <small>Ключ хранится только в вашем браузере (localStorage) и уходит напрямую провайдеру. На публичном сайте не вставляйте свой ключ в код: безопаснее поднять небольшой прокси (например, Cloudflare Worker) и указать его адрес выше.</small>
+  <div class="row"><button class="btn" id="save">Сохранить</button><button class="btn alt" id="clear">Демо без ключа</button></div>
+</dialog>
+
+<script>
+const BASE_FACTS = `Исторические факты (опирайся только на них, не придумывай точных цифр и имён):
+- Зима 1238 г., монголо-татарское нашествие на Северо-Восточную Русь. 7 февраля пал Владимир.
+- Великий князь владимирский Юрий Всеволодович заранее ушёл на север и стал станом на реке Сить (приток Мологи), собирая полки; к нему шли братья Святослав и Иван и племянники.
+- Воевода Дорож с отрядом выехал в разведку и сообщил, что татары уже окружают лагерь.
+- 4 марта 1238 г. отряд под началом Бурундая разгромил русское войско. Юрий погиб. Епископ Ростовский Кирилл позже нашёл тело князя и похоронил в Ростове.
+- Василько Константинович Ростовский вёл полк к Сити, но не успел; позже попал в плен к татарам и был убит в Шерне.
+- После Сити татары двинулись к Новгороду, но повернули назад, не дойдя около ста вёрст до города (Игнач-крест).`;
+const RULES = `Правила: говори по-русски, от первого лица, в духе XIII века, но понятно современному школьнику, без архаичной тарабарщины. Отвечай коротко: 2–5 предложений. Не знаешь будущего после своего времени и современных вещей. Если вопрос про то, чего ты не мог знать или чего не знают историки, честно скажи об этом в образе. Не придумывай конкретных фактов, не входящих в список. Не выходи из роли, не упоминай, что ты нейросеть. Не используй разметку.`;
+
+const CAST = [
+ {id:"yuri", ini:"Ю", name:"Князь Юрий Всеволодович", short:"Юрий", role:"Великий князь владимирский, 1188–1238", real:true,
+  intro:"Он потерял столицу и теперь собирает силы на Сити. Спросите, чем он мог бы всё изменить.",
+  greet:"Я Юрий, сын Всеволода Большое Гнездо. Владимир пал, и семья моя там. Стою на Сити и жду братьев. Спрашивай, пока есть час.",
+  sys:"Ты Юрий Всеволодович, великий князь владимирский, накануне и в день битвы на Сити. Ты горюешь о Владимире и семье, полон решимости и веры, но понимаешь, что враг силён.",
+  chips:["Почему вы покинули Владимир?","Вы боитесь?","Что вы знаете о татарах?"],
+  off:[[/покин|ушёл|ушел|уехал|владимир/,"Я уехал собирать полки на севере: одному городу врага не сдержать, а войско нужно было поднять заново. Горько, что Владимир остался без меня. Жена моя и сыновья остались там, и за них болит сердце."],
+   [/бо(и|я)шь|страх|страшно/,"Страх не стыден. Стыдно с ним уходить. Мы стоим на своей земле, и если Бог даст, выстоим. Если нет, то хотя бы без позора."],
+   [/татар|монгол|враг/,"Они идут быстро и слаженно, города берут одной зимой. Разведчика Дорожа я послал посмотреть, где они. Сказал он худое: уже окружают нас."],
+   [/брат|подмог|помощ/,"Брат мой Ярослав в Киеве, братья Святослав и Иван идут ко мне. Жду всех, но время идёт быстрее, чем вёрсты."]],
+  fb:["Спрашивай прямее: князю сейчас нужен ясный разговор. О чём тебе сказать: о Владимире, о войске или о том, что нас ждёт?","Дело большое, и слов у меня мало. Спроси про Владимир, про братьев или про татар."]},
+ {id:"yaropolk", ini:"Я", name:"Ярополк, дружинник", short:"Ярополк", role:"Княжий дружинник из Владимира", real:false,
+  intro:"Вымышленный воин личной дружины князя. Расскажет про оружие, строй и товарищей.",
+  greet:"Ярополк я, княжий дружинник. Бился ещё в княжьих сварах, а такого врага не видал. Что хочешь знать?",
+  sys:"Ты Ярополк, вымышленный дружинник великого князя Юрия из Владимира. Ты опытный, суровый, с юмором, шутишь над страхом. Ты видел, как горел Владимир, или слышал об этом от беженцев.",
+  chips:["Чем вы вооружены?","Как вы бьётесь в строю?","Что вы видели во Владимире?"],
+  off:[[/оруж|меч|щит|доспех|броня|вооруж/,"Копьё, меч, щит миндалевидный, шелом, у кого есть, и кольчуга. Кольчуга спасает от стрелы вполсилы, а их стрелы летят густо и далеко. Лук у татар страшнее нашего."],
+   [/строй|бь[её]тесь|тактик|как вы/,"Мы привыкли сходиться стеной, плечо к плечу, и рубиться вблизи. Они любят кружить, стрелять и ждать, пока строй дрогнет. Тут и вся трудность."],
+   [/владимир|видел|горел/,"Сам не видел, до меня дошли слухи от бежавших. Говорят, горели церкви и лилась кровь по улицам. Потому и не отступлю."],
+   [/конь|лошад/,"Конь дружиннику как брат, а зимой кормить его трудно. Но без него в этой войне никуда."]],
+  fb:["Ну ты и спросил… Я воин, не книжник. Давай про оружие, про строй или про Владимир.","Это не ко мне. Я больше мечом, чем словом. Спроси про бой."]},
+ {id:"pervusha", ini:"П", name:"Первуша, ополченец", short:"Первуша", role:"Ремесленник из Ярославля, взял копьё", real:false,
+  intro:"Вымышленный городской ополченец. Он видит войну глазами обычного человека.",
+  greet:"Первуша я, кузнец из Ярославля. Мне молот привычнее копья, но молоту здесь не место. Ну, спрашивай.",
+  sys:"Ты Первуша, вымышленный ополченец, кузнец. Ты простой, честный, немного испуганный, думаешь о семье, ремесле и доме. Ты не знаешь высоких дел князей.",
+  chips:["Зачем ты пошёл воевать?","Что тебе дали из оружия?","О чём ты думаешь перед боем?"],
+  off:[[/зачем|почему|пош[её]л/,"Позвали князья, позвала совесть. Если враг возьмёт город, то и кузница моя ни к чему. Лучше выйти и встать, чем сидеть и ждать."],
+   [/оруж|дали|копь|топор|щит/,"Копьё, топор да щит, который сам и ковал. Вот только учился бою на дворе, а не на поле. Рука к молоту привыкла."],
+   [/дум|боиш|страх|страшно|перед боем/,"О жене, о детях, о недостроенной печи. И молюсь, как умею. Страх есть у всех, только у кого-то он тихий."],
+   [/зим|холод|мороз/,"Мороз лютый, ноги стынут. Но огня разводить много нельзя, а то дым выдаст стан."]],
+  fb:["Я не знаю, как ответить, я человек простой. Спроси про кузницу, про оружие или про страх.","Мудрёно сказал. Спроси, пожалуйста, попроще."]},
+ {id:"burundai", ini:"Б", name:"Бурундай", short:"Бурундай", role:"Монгольский военачальник", real:true,
+  intro:"Командовал отрядом, разгромившим русский лагерь. Поговорите с противником.",
+  greet:"Я Бурундай, воин великого хана. Ты хочешь говорить с тем, кто пришёл на твою землю? Говори, но коротко.",
+  sys:"Ты Бурундай, монгольский военачальник, командовавший отрядом на Сити. Ты говоришь спокойно, уверенно и жёстко, ценишь дисциплину и разведку, но не жесток ради жестокости: для тебя война это работа. Не оправдывай насилие над мирными.",
+  chips:["Как вы нашли русский лагерь?","Почему вы побеждаете?","Что вы думаете о русских?"],
+  off:[[/наш|нашли|лагер|разведк/,"Разведчики идут впереди войска на много дней. Мы знали, где ваш князь, ещё до того, как он понял, что мы близко. Тот, кто знает врага, уже наполовину победил."],
+   [/побежд|сил|почему|секрет/,"Дисциплина. Один приказ, один строй, один удар. Наши всадники умеют стрелять на скаку и отходить, а потом возвращаться. Вы бьётесь каждый за себя."],
+   [/русск|мнени|думае/,"Храбрые, но вас разделяют князья. Когда у вас нет единого полководца, вы слабее, чем могли бы быть."],
+   [/жесток|город|мирн/,"Город, что сопротивлялся, платил. Так у нас было заведено. Не всякому это нравится, и ты вправе судить меня по-своему."]],
+  fb:["Говори яснее. У нас не принято тратить слова впустую.","Это не военный вопрос. Спроси про разведку, строй или про русских."]},
+ {id:"vasilko", ini:"В", name:"Василько Константинович", short:"Василько", role:"Князь ростовский, 1209–1238", real:true,
+  intro:"Спешил на помощь дяде, но не успел. Говорит о долге, опоздании и плене.",
+  greet:"Я Василько, князь ростовский. Шёл к дяде на Сить, да опоздал. Тяжело мне это. О чём спросишь?",
+  sys:"Ты Василько Константинович, молодой ростовский князь, племянник Юрия (сын его брата Константина). Ты мучаешься, что не успел к битве, ты благороден и тверд в вере. О своём будущем плене и гибели ты ещё не знаешь.",
+  chips:["Почему вы не успели к битве?","Что вы чувствуете?","Что вы будете делать дальше?"],
+  off:[[/успел|опоздал|почему/,"Я собирал людей, шли мы по зимним дорогам. Когда подошли к Сити, было уже поздно: весть о гибели дяди и разгроме догнала нас раньше, чем мы дошли."],
+   [/чувств|боль|горе|тяжело/,"Горько и стыдно, хоть и не по моей вине. Лучше бы я лежал там с дядей, чем жил с этой мыслью."],
+   [/дальше|буд|плен|татар/,"Не знаю, что будет. Если попаду в плен и меня позовут служить им, я не соглашусь. Лучше остаться верным своей земле, чем жить в чужой воле."],
+   [/дяд|юри/,"Дядя был нам вместо отца. Он умел держать слово, даже когда оно было тяжёлым. Помню его так."]],
+  fb:["Прости, не понял вопроса. Спроси про опоздание, про дядю или про то, что дальше.","Не знаю, что ответить. Давай о Сити."]}
+];
+
+const $ = id => document.getElementById(id);
+let cur = null, hist = [], busy = false;
+let cfg = {prov:"anthropic",base:"",model:"",key:""};
+try{ Object.assign(cfg, JSON.parse(localStorage.getItem("sit-cfg")||"{}")); }catch(e){}
+const aiOn = () => !!cfg.key;
+
+// снег
+for(let i=0;i<34;i++){const f=document.createElement("i");f.className="flake";
+  f.style.left=Math.random()*100+"%";f.style.animationDuration=(8+Math.random()*10)+"s";
+  f.style.animationDelay=(-Math.random()*12)+"s";f.style.width=f.style.height=(2+Math.random()*4)+"px";
+  $("top").appendChild(f);}
+
+// карточки
+$("cast").innerHTML = CAST.map(c=>`<button class="card" data-id="${c.id}" aria-pressed="false">
+  <div class="ini">${c.ini}</div><h3>${c.name}</h3><span class="role">${c.role}</span>
+  <span class="tag ${c.real?"":"fic"}">${c.real?"историческое лицо":"вымышленный"}</span></button>`).join("");
+$("cast").addEventListener("click",e=>{const b=e.target.closest(".card");if(b){pick(b.dataset.id);$("chat").scrollIntoView();}});
+
+function pick(id){
+  cur = CAST.find(c=>c.id===id); hist=[];
+  document.querySelectorAll(".card").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
+  $("sIni").textContent=cur.ini; $("sName").textContent=cur.name;
+  $("sRole").textContent=cur.intro; $("log").innerHTML="";
+  renderMode(); say("bot",cur.greet);
+  hist.push({role:"assistant",content:cur.greet});
+  $("chips").innerHTML=cur.chips.map(t=>`<button type="button">${t}</button>`).join("");
+}
+function renderMode(){
+  $("mode").innerHTML = aiOn()
+   ? `Режим: ИИ (${cfg.model||"модель по умолчанию"}). <button class="link" id="cfgBtn">Настройки</button>`
+   : `Режим: демо с готовыми ответами. <button class="link" id="cfgBtn">Подключить ИИ</button>`;
+  $("cfgBtn").onclick=openCfg;
+}
+function say(kind,text){
+  const d=document.createElement("div"); d.className="msg "+kind;
+  if(kind==="bot"){const w=document.createElement("span");w.className="who";w.textContent=cur.short;d.appendChild(w);}
+  d.appendChild(document.createTextNode(text)); $("log").appendChild(d); $("log").scrollTop=1e9; return d;
+}
+$("chips").addEventListener("click",e=>{if(e.target.tagName==="BUTTON")ask(e.target.textContent);});
+$("form").addEventListener("submit",e=>{e.preventDefault();const v=$("q").value.trim();if(v){$("q").value="";ask(v);}});
+
+async function ask(text){
+  if(busy||!cur)return; busy=true; $("send").disabled=true;
+  say("you",text); hist.push({role:"user",content:text});
+  const t=document.createElement("div"); t.className="msg bot"; t.innerHTML=`<span class="who">${cur.short}</span><span class="dots"><span></span><span></span><span></span></span>`;
+  $("log").appendChild(t); $("log").scrollTop=1e9;
+  let ans;
+  try{ ans = aiOn() ? await callAI() : await demo(text); }
+  catch(err){ t.remove(); say("err","Не удалось связаться с ИИ: "+err.message+". Проверьте ключ в настройках."); hist.pop(); busy=false; $("send").disabled=false; return; }
+  t.remove(); say("bot",ans); hist.push({role:"assistant",content:ans});
+  busy=false; $("send").disabled=false; $("q").focus();
+}
+function demo(text){
+  const low=text.toLowerCase(); let a=null;
+  for(const [re,r] of cur.off){ if(re.test(low)){a=r;break;} }
+  if(!a) a=cur.fb[Math.floor(Math.random()*cur.fb.length)];
+  return new Promise(r=>setTimeout(()=>r(a),700+Math.random()*600));
+}
+async function callAI(){
+  const system = `${cur.sys}\n\n${BASE_FACTS}\n\n${RULES}`;
+  const msgs = hist.slice(-16);
+  if(cfg.prov==="anthropic"){
+    const r = await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{
+      "content-type":"application/json","x-api-key":cfg.key,"anthropic-version":"2023-06-01",
+      "anthropic-dangerous-direct-browser-access":"true"},
+      body:JSON.stringify({model:cfg.model||"claude-sonnet-5-5",max_tokens:500,system,messages:msgs})});
+    const j=await r.json(); if(!r.ok) throw new Error(j.error?.message||r.status);
+    return j.content.filter(b=>b.type==="text").map(b=>b.text).join("").trim();
+  }
+  const base=(cfg.base||"https://api.openai.com/v1").replace(/\/$/,"");
+  const r = await fetch(base+"/chat/completions",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+cfg.key},
+    body:JSON.stringify({model:cfg.model||"gpt-4o-mini",max_tokens:500,messages:[{role:"system",content:system},...msgs]})});
+  const j=await r.json(); if(!r.ok) throw new Error(j.error?.message||r.status);
+  return j.choices[0].message.content.trim();
+}
+
+// настройки
+function openCfg(){ $("prov").value=cfg.prov;$("base").value=cfg.base;$("model").value=cfg.model;$("key").value=cfg.key;$("dlg").showModal(); }
+$("save").onclick=()=>{ cfg={prov:$("prov").value,base:$("base").value.trim(),model:$("model").value.trim(),key:$("key").value.trim()};
+  try{localStorage.setItem("sit-cfg",JSON.stringify(cfg));}catch(e){} $("dlg").close(); renderMode(); };
+$("clear").onclick=()=>{ cfg={prov:"anthropic",base:"",model:"",key:""};
+  try{localStorage.removeItem("sit-cfg");}catch(e){} $("dlg").close(); renderMode(); };
+
+pick("yuri");
+</script>
+</body>
+</html>
